@@ -1,0 +1,6 @@
+[submodule "maskrcnn/Mask_RCNN"]
+	path = maskrcnn/Mask_RCNN
+	url = https://github.com/GuillaumeMougeot/Mask_RCNN.git
+[submodule "deepcell/deepcell-tf"]
+	path = deepcell/deepcell-tf
+	url = https://github.com/GuillaumeMougeot/deepcell-tf.git
