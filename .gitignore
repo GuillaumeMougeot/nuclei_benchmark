@@ -1,5 +1,6 @@
 # Project ignores
 data/
+notebooks/images/
 .tmb/
 
 # Byte-compiled / optimized / DLL files

@@ -29,7 +29,8 @@ Each folder has to be setup with a Docker specific environment.
 ## results
 For now the results are computed on the OMERO_FSU dataset with the Otsu segmentation considered as the ground truth. This will be change later.
 
-| Method              | Framework | Avg. Jaccard   | Avg. Dice | Avg. F1   | NJ2      | Rmks           | 
-|:---------:          |:-------:  |:-------:       |:--------: |:--------: |:--------:|:--------------:|
-| 2d_topcoders_selim  | tf1_keras | --             | --        | --        | --       | Empty outputs  |
-| 2d_maskrcnn         | tf1_keras | 0.521          | 0.657     | --        | --       | the model was pre-trained on DSB2018 with custom parameters  |
+| Method           | 2D or 3D? | Framework | Avg. Jaccard   | Avg. Dice | Avg. F1   | NJ2      | Rmks           | 
+|:----------------:|:---------:|:---------:|:--------------:|:---------:|:---------:|:--------:|:--------------:|
+| topcoders_selim  | 2D        | tf1_keras | --             | --        | --        | --       | Empty outputs  |
+| maskrcnn         | 2D        | tf1_keras | 0.380          | 0.504     | --        | --       | the model was pre-trained on DSB2018 with custom parameters  |
+| deepcell         | 3D        | tf2       | 0.327          | 0.446     | --        | --       | selection of only the biggest labeled object |
