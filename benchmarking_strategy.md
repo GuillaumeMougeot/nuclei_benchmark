@@ -49,10 +49,14 @@ docker pull nvcr.io/nvidia/tensorflow:21.03-tf1-py3
 2. Start the created container 
 ```
 docker start c_maskrcnn 
+
+docker run -it -d --name dl nvcr.io/nvidia/pytorch:21.05-py3
 ```
 3. Setup the container with the additional libraries in bash mode 
 ```
 docker exec -it c_maskrcnn bash 
+
+docker exec -it dl bash
 ```
   * Then install the necessary python packages. NOTE: careful with the python installation, cf below 
   * For maskrcnn: 
@@ -66,10 +70,19 @@ docker exec -it c_maskrcnn bash
 5. Commit the container to create a Docker image 
 ```
 docker commit c_maskrcnn maskrcnn 
+
+docker commit dl dl
 ```
 6. Run this image with the jupyter notebook and with the mounted local volume (cf. Command above) 
 ```
 docker run -it --rm --runtime=nvidia -v $(realpath ~/all/codes/python):/tf/notebooks -p 8888:8888 maskrcnn 
+
+docker run --gpus all -it --rm \
+       -v $PWD/dsb2018_pytorch:/home/dsb2018_pytorch \
+       -v $PWD/dsb2018_topcoders/data:/home/dsb2018_pytorch/data/nuclei_2d \
+       -w /home \
+       -p 8888:8888 \
+       dl jupyter notebook
 ```
 Or with a (for a docker container not configure with jupyter notebook direct execution)
 ```
