@@ -4,3 +4,6 @@
 [submodule "deepcell/deepcell-tf"]
 	path = deepcell/deepcell-tf
 	url = https://github.com/GuillaumeMougeot/deepcell-tf.git
+[submodule "nnunet/nnUNet"]
+	path = nnunet/nnUNet
+	url = https://github.com/GuillaumeMougeot/nnUNet
