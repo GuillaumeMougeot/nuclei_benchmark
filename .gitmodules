@@ -7,3 +7,6 @@
 [submodule "nnunet/nnUNet"]
 	path = nnunet/nnUNet
 	url = https://github.com/GuillaumeMougeot/nnUNet
+[submodule "cellpose/cellpose"]
+	path = cellpose/cellpose
+	url = https://github.com/GuillaumeMougeot/cellpose.git
