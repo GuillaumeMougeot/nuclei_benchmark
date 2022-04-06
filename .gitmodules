@@ -13,3 +13,6 @@
 [submodule "qcanet/qcanet"]
 	path = qcanet/qcanet
 	url = https://github.com/GuillaumeMougeot/QCANet.git
+[submodule "nuset/nuset"]
+	path = nuset/nuset
+	url = https://github.com/GuillaumeMougeot/NuSeT.git
