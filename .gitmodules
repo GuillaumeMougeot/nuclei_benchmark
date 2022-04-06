@@ -10,6 +10,3 @@
 [submodule "cellpose/cellpose"]
 	path = cellpose/cellpose
 	url = https://github.com/GuillaumeMougeot/cellpose.git
-[submodule "qcanet"]
-	path = qcanet
-	url = https://github.com/GuillaumeMougeot/QCANet
