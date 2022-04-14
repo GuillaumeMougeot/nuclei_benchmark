@@ -16,6 +16,3 @@
 [submodule "nuset/nuset"]
 	path = nuset/nuset
 	url = https://github.com/GuillaumeMougeot/NuSeT.git
-[submodule "stardist/stardist"]
-	path = stardist/stardist
-	url = https://github.com/stardist/stardist
