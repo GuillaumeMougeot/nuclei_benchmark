@@ -56,11 +56,11 @@ Dans certains cas,  il sera nécessaire de supprimer tous les fichiers .npy gén
 
 Pour tester le modèle ainsi entrainé sur les images de test, il faut lancer une prédiction pour chaque valeur de fold.
 
-<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_0 -t 500 -tr nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>  
-<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_1 -t 500 -tr nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>  
-<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_2 -t 500 -tr nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>   
-<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_3 -t 500 -tr nnUNetTrainerV2nnUNetTrainerV2nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>   
-<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_4 -t 500 -tr nnUNetTrainerV2nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>   
+<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_0 -t 500 -tr nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>  
+<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_1 -t 500 -tr nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>  
+<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_2 -t 500 -tr nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>   
+<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_3 -t 500 -tr nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>   
+<font color='red'>``nnUNet_predict -i $nnUNet_raw_data_base/nnUNet_raw_data/Task500_Nucleus/imagesTs/ -o output_for_fold_4 -t 500 -tr nnUNetTrainerV2 -m 3d_fullres -f 0'``</font>     
 
 Ensuite on lance une autre prédiction qui effectuer une prédiction en moyennant les prédictions précédentes.
 
