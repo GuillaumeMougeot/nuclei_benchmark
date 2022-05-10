@@ -132,3 +132,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# datasets
+stardist/dataset/in/
+stardist/dataset/out/
+cellpose/dataset/in/
+cellpose/dataset/out
+qcanet/dataset/in/
+qcanet/dataset/out/
