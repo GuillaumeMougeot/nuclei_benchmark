@@ -201,7 +201,7 @@ if use_gpu:
     # alternatively, try this:
     # limit_gpu_memory(None, allow_growth=True)
 
-model = StarDist3D(conf, name=args.model_name, basedir=args.model_name)
+model = StarDist3D(conf, name=args.model_name, basedir=args.model_dir)
 
 model._axes_tile_overlap('ZYX')
 

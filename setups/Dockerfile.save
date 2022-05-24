@@ -1,0 +1,59 @@
+ARG MAKE_JOBS=1
+
+FROM debian:buster-slim AS base
+FROM base AS builder
+
+
+
+
+
+
+
+
+
+
+
+#RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+#RUN apk add --update --no-cache py3-numpy py3-pandas@testing
+#RUN apk add --no-cache \
+#        cmake \
+#        g++ \
+#        gcc \
+#        git \
+#        linux-headers \
+#        make \
+#        perl
+#RUN apt install cmake g++ gcc git linux-headers make pearl python
+#RUN apt-get -y install wget
+ENV PYTHONPATH=/usr/lib/python3.8/site-packages
+
+RUN apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+
+RUN apt install python3
+RUN pyhton3 -m ensurepip
+RUN pip install pandas numpy
+
+ARG MAKE_JOBS
+WORKDIR /opt/itk-src
+RUN wget -O- -q https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.1.1/InsightToolkit-5.1.1.tar.gz \
+    | tar xz --strip 1 \
+    && mkdir build \
+    && cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/opt/itk -DCMAKE_COLOR_MAKEFILE=OFF .. \
+    && make --jobs "$MAKE_JOBS" \
+    && make install
+
+WORKDIR /opt/evaluate-segmentation
+RUN git clone https://github.com/Visceral-Project/EvaluateSegmentation.git .
+COPY . .
+RUN mkdir build \
+    && cd build \
+    && cmake -DITK_DIR=/opt/itk/lib/cmake/ITK-5.1 ../source \
+    && make --jobs "$MAKE_JOBS"
+
+
+FROM base
+COPY --from=builder /opt/evaluate-segmentation/build/EvaluateSegmentation /usr/local/bin/
+#RUN apk add --no-cache libgcc libstdc++
+RUN apt install libgcc libstdc++
+WORKDIR /work

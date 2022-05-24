@@ -1,0 +1,45 @@
+ARG MAKE_JOBS=1
+
+FROM alpine:3.12.0 AS base
+FROM base AS builder
+
+RUN apk add --no-cache \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        linux-headers \
+        make \
+        perl
+
+ARG MAKE_JOBS
+WORKDIR /opt/itk-src
+RUN wget -O- -q https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.1.1/InsightToolkit-5.1.1.tar.gz \
+    | tar xz --strip 1 \
+    && mkdir build \
+    && cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/opt/itk -DCMAKE_COLOR_MAKEFILE=OFF .. \
+    && make --jobs "$MAKE_JOBS" \
+    && make install
+
+WORKDIR /opt/evaluate-segmentation
+RUN git clone https://github.com/Visceral-Project/EvaluateSegmentation.git .
+COPY . .
+RUN mkdir build \
+    && cd build \
+    && cmake -DITK_DIR=/opt/itk/lib/cmake/ITK-5.1 ../source \
+    && make --jobs "$MAKE_JOBS"
+
+FROM base
+COPY --from=builder /opt/evaluate-segmentation/build/EvaluateSegmentation /usr/local/bin/
+RUN apk add --no-cache libgcc libstdc++
+WORKDIR /work
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
+RUN echo "http://dl-8.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
+RUN pip install pandas numpy
+#ENTRYPOINT ["/usr/local/bin/EvaluateSegmentation"]
+#CMD ["--help"]

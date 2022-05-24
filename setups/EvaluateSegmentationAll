@@ -1,0 +1,104 @@
+#!/bin/sh
+# out=$(/opt/evaluate-segmentation/build/EvaluateSegmentation mask_sophie.tif mask_guillaume.tif -use all)
+
+#sophie='/home/data/sophie/'
+#guillaume='/home/data/guillaume/'
+#otsu='/home/data/otsu/'
+#gift='/home/data/gift/'
+#cellpose='/home/data/masks_resultat/'
+#deepcell='/home/data/deepCell/'
+#qcanet='/home/data/qcanet/'
+#stardist='/home/data/stardist/'
+self_img='/home/data/self_img/'
+self_labels='/home/data/self_labels/'
+###
+#cyto='/home/data/cellpose/cyto/'
+#cyto2='/home/data/cellpose/cyto2/'
+#nuclei='/home/data/cellpose/nuclei/'
+###
+
+
+general_folder='/home/data/sophie'
+
+
+all_img=""
+
+all_img="${all_img} ${self_img}"
+all_img="${all_img} ${self_labels}"
+#all_img="${all_img} ${sophie}"
+#all_img="${all_img} ${guillaume}" 
+#all_img="${all_img} ${otsu}"
+#all_img="${all_img} ${gift}" 
+#all_img="${all_img} ${cellpose}"
+#all_img="${all_img} ${deepcell}"
+#all_img="${all_img} ${qcanet}"
+#all_img="${all_img} ${stardist}"
+###
+#all_img="${all_img} ${cyto}"
+#all_img="${all_img} ${cyto2}"
+#all_img="${all_img} ${nuclei}"
+###
+
+
+
+all_tags=""
+
+all_tags="${all_tags} self_img"
+all_tags="${all_tags} self_labels"
+#all_tags="${all_tags} sophie" 
+#all_tags="${all_tags} guillaume" 
+#all_tags="${all_tags} otsu" 
+#all_tags="${all_tags} gift" 
+#all_tags="${all_tags} cellpose"
+#all_tags="${all_tags} deepcell"
+#all_tags="${all_tags} qcanet"
+#all_tags="${all_tags} stardist"
+###
+#all_tags="${all_tags} cyto"
+#all_tags="${all_tags} cyto2"
+#all_tags="${all_tags} nuclei"
+###
+
+
+total=$(($(echo $all_tags | wc -w)+1))
+
+testTwoFolders() {
+	out_val=''
+	for f in $(ls $general_folder); do
+        	out=$(/opt/evaluate-segmentation/build/EvaluateSegmentation $1$f $2$f -use all)
+        	out_val="$out_val$out \n"
+	done
+	echo $out_val >> results/$3_$4.txt
+
+}
+
+
+i=1
+for path1 in $all_img; do
+	j=$(($i+1))
+	while [ $j -lt ${total} ]; do
+		path2=$(echo $all_img | cut -d' ' -f$j)
+		name1=$(echo $all_tags | cut -d' ' -f$i)
+		name2=$(echo $all_tags | cut -d' ' -f$j)
+		
+		if [ ! -f "results/${name1}_${name2}.txt" ] && [ ! -f "results/${name2}_${name1}.txt" ]; then
+			echo "comparison between ${name1} and ${name2}"
+			testTwoFolders ${path1} ${path2} ${name1} ${name2}
+		else
+			echo "results/${name1}_${name2}.txt already exists"
+		fi	
+		echo
+		j=$(($j+1))
+	done
+	i=$(($i+1))
+done
+
+
+
+
+
+#####
+#
+#   testTwoFolders $path1 $path2 "name1" "name2"
+#
+#####

@@ -137,6 +137,9 @@ dmypy.json
 stardist/dataset/in/
 stardist/dataset/out/
 cellpose/dataset/in/
-cellpose/dataset/out
+cellpose/dataset/out/
 qcanet/dataset/in/
 qcanet/dataset/out/
+setups/dataset/metrics/
+setups/dataset/predicted/
+setups/dataset/true/
