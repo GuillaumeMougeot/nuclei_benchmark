@@ -19,7 +19,7 @@ pip install -e .
 ##  Configuration
 Avant de commencer, il est important d'avoir le répertoire de travail sous le format adapté à nnUNet
 
-![Image de la configuration du répertoire de travail.](images/directories_to_make.png)
+![Image de la configuration du répertoire de travail.](images/directories_to_make.png).  
 Il faudra donc avoir la meme structure que sur l'image au dessus
 Vous devez aussi modifier les variables img_folder (dossier contenant les images) et msk_folder (dossier contenant les masks) pour les adapter à votre configuration.
 Définir quelques variables d'environnement
