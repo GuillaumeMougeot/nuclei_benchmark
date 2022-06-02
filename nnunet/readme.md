@@ -19,7 +19,7 @@ pip install -e .
 ##  Configuration
 Avant de commencer, il est important d'avoir le répertoire de travail sous le format adapté à nnUNet
 
-![Image de la configuration du répertoire de travail.](/images/directories_to_make.png)
+![Image de la configuration du répertoire de travail.](images/directories_to_make.png)
 Il faudra donc avoir la meme structure que sur l'image au dessus
 Vous devez aussi modifier les variables img_folder (dossier contenant les images) et msk_folder (dossier contenant les masks) pour les adapter à votre configuration.
 Définir quelques variables d'environnement
@@ -33,7 +33,7 @@ Définir quelques variables d'environnement
 Si vous utilisez docker, il faudra ajouter l'option ``- - ipc = host`` dans la commande run de docker :
 <font color='red'>``docker run --gpus all -it -v /home/nanaa/nnUNet/Notebooks:/notebooks/ -p 8890:8888 --ipc=host modelgenesis``</font>
 Si cette option est omise vous aurez l'erreur ci-dessous ou quelque chose de similaire.
-![Erreur](/images/eror.png)
+![Erreur](images/eror.png)
 
 ### Entraînement du modèle et prédiction
 #### Preprocessing
