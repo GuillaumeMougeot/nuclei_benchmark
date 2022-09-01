@@ -13,8 +13,7 @@ Sinon, si vous êtes sur l'ordinateur de Tristan, tapez la commande
 ``cd mnt/sdb2/Adama/nuclei_benchmark/nnUNet/configure_docker_for_nnUNet`` pour accéder au dossier. Une fois à l'intérieur du dossier, suivez les instructions suivantes.
 
 ### Note : 
-Si vous souhaitez choisir un nombre d'epochs, vous devez modifier le fichier ``nb_epochs.py`` qui est situé dans le répertoire courant. L'image ci-dessous montre le contenu du fichier. 
-![choose nb epochs.png](../_resources/choose nb epochs.png)
+Si vous souhaitez choisir un nombre d'epochs, vous devez modifier le fichier ``nb_epochs.py`` qui est situé dans le répertoire courant.
 A la sixième ligne de ce fichier, le nombre d'epochs est spécifié (1000 par défaut). Entrez le nombre d'epochs que vous souhaitez.
 
 # Construction de l'environnement Docker
